@@ -575,7 +575,8 @@ pub fn get_array_refarg(i: &mut Iter) -> Box<dyn RefArg> {
     debug_assert!(i.arg_type() == ArgType::Array);
     let etype = ArgType::from_i32(unsafe { ffi::dbus_message_iter_get_element_type(&mut i.0) } as i32).unwrap();
 
-    println!("Fucking Etype: {:?}", etype);
+    // let awa = i.for_each.into().;
+    println!("FuckingSignature: {:?}", i.signature());
     
     let x = match etype {
         ArgType::Byte => get_fixed_array_refarg::<u8>(i),

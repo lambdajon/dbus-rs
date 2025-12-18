@@ -536,7 +536,7 @@ impl fmt::Debug for Message {
             iter.next();
         }
         let args2: &[_] = &args;
-        x.field("Args", &args2);
+        x.field("Args2", &args2);
         x.finish()
     }
 }

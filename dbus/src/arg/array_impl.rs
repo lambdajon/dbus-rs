@@ -598,7 +598,7 @@ pub fn get_array_refarg(i: &mut Iter) -> Box<dyn RefArg> {
             // let rrr = i.signature().as_bytes()[3];
             let rrr2 = i.signature().as_bytes()[4];
             // println!("FuckingVal: {:?}",rrr);
-            println!("FuckingVal Item:4: {:?}",rrr2);
+            println!("FuckingVal Item:4: {:?}",rrr2 as i32);
 
             let value = ArgType::from_i32(i.signature().as_bytes()[3] as i32).unwrap(); // The fourth character, after "a{", is our value.
             

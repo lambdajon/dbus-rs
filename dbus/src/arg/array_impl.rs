@@ -593,7 +593,7 @@ pub fn get_array_refarg(i: &mut Iter) -> Box<dyn RefArg> {
         ArgType::Array => get_internal_array(i),
         ArgType::DictEntry => {
             let key = ArgType::from_i32(i.signature().as_bytes()[2] as i32).unwrap(); // The third character, after "a{", is our key.
-            let values_as_bytes = i.signature().as_bytes().iter().map(|x: &u8| (x.as_str()));
+            let values_as_bytes = i.signature().clone().as_bytes().iter().map(|x: &u8| (x.as_str()));
             let value = ArgType::from_i32(i.signature().as_bytes()[3] as i32).unwrap(); // The fourth character, after "a{", is our value.
             
             println!("DictEntry: {:?}", i.signature().bytes());

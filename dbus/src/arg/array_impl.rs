@@ -598,7 +598,7 @@ pub fn get_array_refarg(i: &mut Iter) -> Box<dyn RefArg> {
             let value = ArgType::from_i32(i.signature().as_bytes()[3] as i32).unwrap(); // The fourth character, after "a{", is our value.
             
             // println!("DictEntry: {:?}", i.signature().bytes());
-            println!("Message: {:?}", i.1);
+            println!("FuckingKey: {:?}",key);
             match key {
                 ArgType::Byte => get_dict_refarg_for_value_type::<u8, _>(value, i, Iter::get),
                 ArgType::Int16 => get_dict_refarg_for_value_type::<i16, _>(value, i, Iter::get),

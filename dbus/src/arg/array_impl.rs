@@ -2,7 +2,7 @@ use super::*;
 use crate::{Message, ffi};
 use crate::strings::{Signature, Path};
 use std::marker::PhantomData;
-use std::{ptr, mem, any, fmt};
+use std::{any, fmt, i32, mem, ptr};
 use super::check;
 use std::ffi::{CString};
 use std::os::raw::{c_void, c_int};
@@ -593,8 +593,11 @@ pub fn get_array_refarg(i: &mut Iter) -> Box<dyn RefArg> {
         ArgType::Array => get_internal_array(i),
         ArgType::DictEntry => {
             let key = ArgType::from_i32(i.signature().as_bytes()[2] as i32).unwrap(); // The third character, after "a{", is our key.
+            let values_as_bytes = i.signature().as_bytes().iter().map(|x: u8| (x.as_str()));
             let value = ArgType::from_i32(i.signature().as_bytes()[3] as i32).unwrap(); // The fourth character, after "a{", is our value.
+            
             println!("DictEntry: {:?}", i.signature().bytes());
+            println!("ValuesMap: {:?}", values_as_bytes);
             match key {
                 ArgType::Byte => get_dict_refarg_for_value_type::<u8, _>(value, i, Iter::get),
                 ArgType::Int16 => get_dict_refarg_for_value_type::<i16, _>(value, i, Iter::get),
